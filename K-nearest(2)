@@ -1,0 +1,31 @@
+%Plot 5 test digits that are correctly classified by the 1-NN classifier, and 5 which are incorrectly
+classified. Do you see any patterns?
+
+[a]=find(labels==1)
+A=a(1:200,:);             % establish training data with label 1
+
+[b]=find(labels==2)
+B=b(1:200,:);
+
+[c]=find(labels==7)
+C=c(1:200,:);
+T=c(201:400,:);           % establish test data with label 7
+F=[A;B;C];              % establish whole training data
+
+for k=1:200
+for i=1:600
+X=0;
+   for j=1:784
+   X=X+(images(j,T(k,1))-images(j,F(i,1)))^2;    %measure distance
+   end
+d(i,k)=sqrt(X);      % save distance, every vertical raw is the result of a test data
+end
+end
+
+[m,n]=sort(d,1);      % sort data according to distance, n provide the serial number of nearest training data to test data
+
+for p=1:200
+if n(1,p)<400        % if the serial number less than 400, test data will not be stuck with label 7.
+fprintf('%d\n ',n(1,p))
+end
+end
