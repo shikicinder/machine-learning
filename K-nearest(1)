@@ -1,0 +1,24 @@
+% Implement a function that finds the K nearest neighbors of any given test digit, and classifies it
+according to a majority vote of their class labels. Construct a training set with 200 examples of
+each class ( N = 600 total examples).
+
+[a]=find(labels==1)
+A=a(1:200,:)
+
+[b]=find(labels==2)
+B=b(1:200,:)
+
+[c]=find(labels==7)
+C=c(1:200,:)
+
+F=[A;B;C]
+
+for i=1:600
+X=0
+   for j=1:784
+   X=X+(images(j,3361)-images(j,F(i,1)))^2
+   end
+d(i)=sqrt(X)
+end
+
+[m,n]=sort(d)
