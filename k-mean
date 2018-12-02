@@ -1,5 +1,5 @@
 k=2;
-A = imread('new.jpg');
+A = im2double（imread('new.jpg')）; %convert unit-8 to double
 [m,n]=size(imread('new.jpg'));%get pixel size
 n=n/3;
 x=[75,190];    %initialize centers
@@ -57,7 +57,7 @@ for i=1:m
         for j=1:n
             for t=1:k
                 if label(i,j)==t
-                    B(i,j,:)=center(1,t,:); % replace pixel with the center of the cluster assigned to it
+                    B(i,j,:)=im2unit8(center(1,t,:)); % replace pixel with the center of the cluster assigned to it
                 end
             end
         end
