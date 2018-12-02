@@ -63,4 +63,4 @@ for i=1:m
         end
 end
 figure;
-imshow(B);
+image(B);
